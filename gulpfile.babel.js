@@ -4,11 +4,10 @@ import browserSync from 'browser-sync';
 import del from 'del';
 import {stream as wiredep} from 'wiredep';
 import fs from 'fs';
-import s3 from 'gulp-s3-upload';
+import s3 from 'gulp-s3';
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
-
 const awsCredentials = JSON.parse(fs.readFileSync('private/awsaccess.json'));
 
 gulp.task('styles', () => {
@@ -43,17 +42,6 @@ const testLintOptions = {
 
 gulp.task('lint', lint('app/scripts/**/*.js'));
 gulp.task('lint:test', lint('test/spec/**/*.js', testLintOptions));
-
-gulp.task('upload', () => {
-  return gulp.src("dist/**/*")
-    .pipe(
-      s3(awsCredentials, {
-          headers: {
-            'x-amz-acl': 'public-read'
-        }
-      })
-    );
-});
 
 gulp.task('html', ['styles'], () => {
   const assets = $.useref.assets({searchPath: ['.tmp', 'app', '.']});
@@ -167,6 +155,10 @@ gulp.task('wiredep', () => {
       ignorePath: /^(\.\.\/)*\.\./
     }))
     .pipe(gulp.dest('app'));
+});
+
+gulp.task('upload', () => {
+  return gulp.src("dist/**").pipe(s3(awsCredentials));
 });
 
 gulp.task('build', ['lint', 'html', 'images', 'fonts', 'extras'], () => {
