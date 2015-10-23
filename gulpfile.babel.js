@@ -157,7 +157,7 @@ gulp.task('wiredep', () => {
     .pipe(gulp.dest('app'));
 });
 
-gulp.task('upload', () => {
+gulp.task('upload', ['build'], () => {
   return gulp.src("dist/**").pipe(s3(awsCredentials));
 });
 
