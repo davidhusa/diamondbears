@@ -1,4 +1,5 @@
 # Diamond bears
+[![Build Status](https://travis-ci.org/austinhinderer/diamondbears.svg?branch=master)](https://travis-ci.org/austinhinderer/diamondbears)
 
 ## Usage
 1. Clone the package
