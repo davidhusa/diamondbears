@@ -24,6 +24,10 @@ $marginLarge: 60px;
   font-style: normal;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   background: $slate900;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -98,6 +102,33 @@ button {
   display: inline-block;
   line-height: 0;
   margin-bottom: $marginMid;
+  position: relative;
+  width: 100%;
+  padding-right: 350px;
+}
+
+.player-box {
+  position: relative;
+  padding-bottom: 56.25%;
+}
+
+#chat-frame {
+  position: absolute;
+  right: 0;
+  width: 350px;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+}
+
+#player-frame {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .row {
