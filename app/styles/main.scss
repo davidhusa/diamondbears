@@ -7,7 +7,7 @@ $slate900: #263238;
 $orange500: #ff5722;
 
 $gutter: 20px;
-$marginOffset: ;
+$marginOffset: 8px;
 $marginSmall: 15px;
 $marginMid: 30px;
 $marginLarge: 60px;
@@ -51,6 +51,17 @@ button {
     background-color: $orange500;
     box-shadow: 0px 4px 7px 2px $slate900;
     transition: all .2s linear;
+  }
+}
+
+tr {
+  td, th {
+    padding: $marginOffset;
+    border-bottom: 1px solid #757575;
+  }
+
+  &:nth-child(odd) td {   
+    background-color: #E0E0E0;
   }
 }
 
